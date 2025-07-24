@@ -1,0 +1,79 @@
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+export interface Expense {
+  id: string;
+  description: string;
+  amount: number;
+  category: string;
+  productType: string;
+  date: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ExpenseService {
+  private expenses: Expense[] = [];
+  private expensesSubject = new BehaviorSubject<Expense[]>([]);
+  public expenses$ = this.expensesSubject.asObservable();
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    // Only load from localStorage if we're in the browser
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadExpensesFromStorage();
+    }
+  }
+
+  getExpenses(): Observable<Expense[]> {
+    return this.expenses$;
+  }
+
+  addExpense(expense: Omit<Expense, 'id'>): void {
+    const newExpense: Expense = {
+      ...expense,
+      id: this.generateId()
+    };
+
+    this.expenses.push(newExpense);
+    this.updateExpenses();
+  }
+
+  private loadExpensesFromStorage(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const stored = localStorage.getItem('expenses');
+      if (stored) {
+        this.expenses = JSON.parse(stored);
+        this.expensesSubject.next([...this.expenses]);
+      }
+    }
+  }
+
+  private updateExpenses(): void {
+    this.expensesSubject.next([...this.expenses]);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('expenses', JSON.stringify(this.expenses));
+    }
+  }
+
+  private generateId(): string {
+    return Date.now().toString() + Math.random().toString(36).substr(2, 9);
+  }
+
+  getTotalAmount(): number {
+    return this.expenses.reduce((total, expense) => total + expense.amount, 0);
+  }
+
+  getExpensesByCategory(): { [key: string]: number } {
+    const categoryTotals: { [key: string]: number } = {};
+    this.expenses.forEach(expense => {
+      if (categoryTotals[expense.category]) {
+        categoryTotals[expense.category] += expense.amount;
+      } else {
+        categoryTotals[expense.category] = expense.amount;
+      }
+    });
+    return categoryTotals;
+  }
+}

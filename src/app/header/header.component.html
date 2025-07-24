@@ -1,0 +1,109 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2c3e50;" *ngIf="isAuthenticated">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="font-weight: bold; color: #ecf0f1;">Expense Tracker</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="toggleMobileMenu()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="closeMobileMenu()">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/add-expense" routerLinkActive="active" (click)="closeMobileMenu()">Add Expense</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/view-expense" routerLinkActive="active" (click)="closeMobileMenu()">View Expenses</a>
+          </li>
+        </ul>
+                                                         <ul class="navbar-nav">
+                                                               <li class="nav-item dropdown" *ngIf="currentUser">
+                                                                 <a
+                                                                   #dropdownToggle
+                                                                   class="nav-link dropdown-toggle-custom d-flex align-items-center"
+                                                                   href="#"
+                                                                   id="navbarDropdown"
+                                                                   role="button"
+                                                                   aria-expanded="false"
+                                                                   (click)="toggleDropdown($event)"
+                                                                   (touchstart)="toggleDropdown($event)"
+                                                                 >
+                                                                   <div class="user-avatar-container">
+                                                                     <img
+                                                                       *ngIf="currentUser.picture"
+                                                                       [src]="currentUser.picture"
+                                                                       alt="Profile"
+                                                                       class="user-avatar"
+                                                                     >
+                                                                     <div
+                                                                       *ngIf="!currentUser.picture"
+                                                                       class="user-avatar-placeholder"
+                                                                     >
+                                                                       {{ currentUser.name.charAt(0).toUpperCase() }}
+                                                                     </div>
+                                                                   </div>
+                                                                   <div class="user-info d-none d-md-block">
+                                                                     <span class="user-name">{{ currentUser.name }}</span>
+                                                                     <small class="user-provider">{{ currentUser.provider === 'google' ? 'Google Account' : 'Email Account' }}</small>
+                                                                   </div>
+                                                                   <i class="dropdown-arrow"></i>
+                                                                 </a>
+                                                                 <div class="dropdown-menu dropdown-menu-end custom-dropdown" aria-labelledby="navbarDropdown">
+                                                                   <div class="dropdown-header">
+                                                                     <div class="user-card">
+                                                                       <img
+                                                                         *ngIf="currentUser.picture"
+                                                                         [src]="currentUser.picture"
+                                                                         alt="Profile"
+                                                                         class="user-card-avatar"
+                                                                       >
+                                                                       <div
+                                                                         *ngIf="!currentUser.picture"
+                                                                         class="user-card-avatar-placeholder"
+                                                                       >
+                                                                         {{ currentUser.name.charAt(0).toUpperCase() }}
+                                                                       </div>
+                                                                       <div class="user-card-info">
+                                                                         <h6 class="user-card-name">{{ currentUser.name }}</h6>
+                                                                         <p class="user-card-email">{{ currentUser.email }}</p>
+                                                                       </div>
+                                                                     </div>
+                                                                   </div>
+                                                                   <hr class="dropdown-divider">
+                                                                   <a class="dropdown-item" href="#" (click)="openProfile(); $event.preventDefault()">
+                                                                     <i class="fas fa-user me-2"></i>
+                                                                     Profile
+                                                                   </a>
+                                                                   <a class="dropdown-item" href="#" (click)="openSettings(); $event.preventDefault()">
+                                                                     <i class="fas fa-cog me-2"></i>
+                                                                     Settings
+                                                                   </a>
+                                                                   <a class="dropdown-item" href="#" (click)="openAnalytics(); $event.preventDefault()">
+                                                                     <i class="fas fa-chart-bar me-2"></i>
+                                                                     Analytics
+                                                                   </a>
+                                                                   <hr class="dropdown-divider">
+                                                                   <button class="dropdown-item logout-item" (click)="logout()">
+                                                                     <i class="fas fa-sign-out-alt me-2"></i>
+                                                                     Sign Out
+                                                                   </button>
+                                                                 </div>
+                                                               </li>
+                                                               <li class="nav-item" *ngIf="!currentUser">
+                                                                 <button class="btn btn-danger" (click)="logout()">Logout</button>
+                                                               </li>
+                                                          </ul>
+      </div>
+    </div>
+</nav>

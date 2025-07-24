@@ -1,0 +1,338 @@
+/* Header styling */
+.navbar-brand {
+  font-weight: bold;
+}
+
+/* Mobile Navigation Fixes */
+.navbar-toggler {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 4px 8px;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  width: 1.2em;
+  height: 1.2em;
+}
+
+/* Ensure mobile menu works */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background-color: rgba(44, 62, 80, 0.95);
+    margin-top: 10px;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin: 2px 0;
+    transition: background-color 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Modern User Dropdown Styling */
+.dropdown-toggle-custom {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 8px 15px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown-toggle-custom:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white !important;
+  text-decoration: none;
+}
+
+.user-avatar-container {
+  position: relative;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  object-fit: cover;
+}
+
+.user-avatar-placeholder {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.user-provider {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.dropdown-arrow {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s ease;
+}
+
+.dropdown-toggle-custom[aria-expanded="true"] .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Custom Dropdown Menu */
+.custom-dropdown {
+  background: white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 0;
+  min-width: 280px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.dropdown-header {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: white;
+  gap: 15px;
+}
+
+.user-card-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  object-fit: cover;
+}
+
+.user-card-avatar-placeholder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-card-info {
+  flex: 1;
+}
+
+.user-card-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.user-card-email {
+  margin: 2px 0 0 0;
+  font-size: 13px;
+  opacity: 0.9;
+  line-height: 1.2;
+}
+
+/* Dropdown Items */
+.custom-dropdown .dropdown-item {
+  padding: 12px 20px;
+  transition: all 0.2s ease;
+  color: #333;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.custom-dropdown .dropdown-item:hover {
+  background: #f8f9fa;
+  color: #667eea;
+  padding-left: 25px;
+}
+
+.custom-dropdown .dropdown-item i {
+  width: 16px;
+  color: #666;
+}
+
+.custom-dropdown .dropdown-item:hover i {
+  color: #667eea;
+}
+
+.logout-item {
+  color: #dc3545 !important;
+  border-top: 1px solid #e9ecef;
+  margin-top: 5px;
+}
+
+.logout-item:hover {
+  background: #fff5f5 !important;
+  color: #dc3545 !important;
+}
+
+.logout-item:hover i {
+  color: #dc3545 !important;
+}
+
+.custom-dropdown .dropdown-divider {
+  margin: 0;
+  border-color: #e9ecef;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .dropdown-toggle-custom {
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+
+  .user-avatar,
+  .user-avatar-placeholder {
+    width: 32px;
+    height: 32px;
+  }
+
+  .user-avatar-placeholder {
+    font-size: 12px;
+  }
+
+  .custom-dropdown {
+    min-width: 260px;
+    margin-top: 5px;
+  }
+
+  .user-card {
+    padding: 15px;
+  }
+
+  .user-card-avatar,
+  .user-card-avatar-placeholder {
+    width: 45px;
+    height: 45px;
+  }
+
+  .user-card-avatar-placeholder {
+    font-size: 16px;
+  }
+
+  .user-card-name {
+    font-size: 15px;
+  }
+
+  .user-card-email {
+    font-size: 12px;
+  }
+
+  .custom-dropdown .dropdown-item {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+
+  .custom-dropdown .dropdown-item:hover {
+    padding-left: 20px;
+  }
+}
+
+/* Animation for dropdown */
+.custom-dropdown {
+  animation: dropdownFadeIn 0.2s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Legacy styles for backward compatibility */
+.logout-btn {
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #dc3545 !important;
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+/* Touch-friendly styles */
+.dropdown-toggle-custom {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.custom-dropdown {
+  touch-action: manipulation;
+}
+
+/* Fix for mobile safari */
+@supports (-webkit-touch-callout: none) {
+  .custom-dropdown {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+

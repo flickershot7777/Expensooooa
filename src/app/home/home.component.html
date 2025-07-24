@@ -1,0 +1,27 @@
+
+<div class="container text-center my-5">
+  <h1>Welcome to Expense Tracker</h1>
+
+  <div *ngIf="isAuthenticated" class="dashboard">
+    <p>You are successfully logged in!</p>
+
+    <div class="action-buttons ">
+      <button  style="border-radius: 25vh;margin-right: 10px;" class="btn btn-primary"routerLink="/add-expense" routerLinkActive="active">
+        Add Expense
+      </button>
+
+      <button class="btn btn-secondary"  style="border-radius: 25vh;margin-right: 10px;" routerLink="/view-expense" routerLinkActive="active">
+        View Expenses
+      </button>
+
+      <button class="btn btn-danger"  style="border-radius: 25vh;margin-right: 10px;" routerLink="/login" (click)="logout()">
+        Logout
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!isAuthenticated" class="login-prompt">
+    <p>Please log in to access your expense tracker.</p>
+    <a routerLink="/login" class="btn btn-primary">Login</a>
+  </div>
+</div>

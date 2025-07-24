@@ -1,0 +1,102 @@
+
+<div class="inputExpense" style="padding-top:80px" id="addProducts">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card bg-dark border-dark">
+          <div class="card-header text-white">
+            <h2 class="text-center mb-0">Add New Expense</h2>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="onSubmit()" #expenseForm="ngForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="productType" class="form-label text-white">Product Type</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="productType"
+                    [(ngModel)]="expense.productType"
+                    name="productType"
+                    placeholder="e.g., Lunch, Gas, Shopping"
+                    required>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="amount" class="form-label text-white">Amount (₹)</label>
+                  <div class="input-group">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="amount"
+                      [(ngModel)]="expense.amount"
+                      name="amount"
+                      placeholder="Enter amount"
+                      step="0.01"
+                      min="0"
+                      required>
+                    <span class="input-group-text">₹</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="category" class="form-label text-white">Category</label>
+                  <select
+                    class="form-control"
+                    id="category"
+                    [(ngModel)]="expense.category"
+                    name="category"
+                    required>
+                    <option value="" disabled>Choose Category</option>
+                    <option *ngFor="let cat of categories" [value]="cat">
+                      {{ cat }}
+                    </option>
+                  </select>
+                </div>
+                 <div class="col-md-6 mb-3">
+                  <label for="description" class="form-label text-white">Expense Description</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    [(ngModel)]="expense.description"
+                    name="description"
+                    placeholder="Enter expense description"
+                    required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="date" class="form-label text-white">Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="date"
+                    [(ngModel)]="expense.date"
+                    name="date"
+                    required>
+                </div>
+                <div class="col-md-6 mb-3 d-flex align-items-end">
+                  <button
+                    type="submit"
+                    class="btn btn-success w-100"
+                    [disabled]="!expenseForm.form.valid">
+                    Add Expense ->
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="viewExpenses-btn" style="padding-top: 20px; padding-bottom: 20px; text-align: center;">
+             <a routerLink="/view-expense" class="btn btn-primary p-2">View Expenses</a>
+
+          </div> -->
+</div>
